@@ -1,7 +1,7 @@
 setwd("E:/Project_GitHub/fetalGeneExpression")
 
 refNCBI <- read.delim("NCBI_Ref.bed")
-refHGNC <- read.delim("HGNC.bed") 
+refHGNC <- read.delim("HGNC.bed")
 
 refNCBI$name <- sub("\\.\\d+","",refNCBI$name)
 refNCBI <- refNCBI[!grepl("_",refNCBI$chrom, perl = T),]
