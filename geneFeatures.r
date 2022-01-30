@@ -15,7 +15,7 @@ TSES <- unique(mergeGenes[,c(1,8:11)])
 for (i in 1:nrow(TSES)) {
     if (TSES$strand[i] == "-") {
         TSES$txStart[i] <- TSES$txEnd[i];
-    }
+    } 
 }
 
 TSES <- unique(TSES[,-5]);
@@ -37,7 +37,7 @@ TSES_N_S <- TSES_N_E <- TSES[grepl("^NR",TSES$name, perl = T),-1]
 
 for (i in 1:nrow(TSES_N_S)) {
     if (TSES_N_S$strand[i] == "-") {
-        TSES_N_S$cdsStart[i] <- TSES_N_S$cdsEnd[i];
+        TSES_N_S$cdsStart[i] <- TSES_N_S$cdsEnd[i]; 
         TSES_N_E$cdsEnd[i] <- TSES_N_E$cdsStart[i];
     }
 }
