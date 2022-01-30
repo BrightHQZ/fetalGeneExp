@@ -7,7 +7,7 @@ refNCBI$name <- sub("\\.\\d+","",refNCBI$name)
 refNCBI <- refNCBI[!grepl("_",refNCBI$chrom, perl = T),]
 mergeGenes <- merge(refHGNC, refNCBI, by.x = "Approved.symbol", by.y = "name2")
 mergeGenes <- mergeGenes[,c(-2,-4,-5,-7,-11,-22:-24)]
-#Write reliable genes in HGNC;
+#Write reliable genes in HGNC; 
 write.table(mergeGenes, "HGNC_reliable.bed", sep = "\t", row.names = F, quote = F);
 
 #write.table(TSES, "HGNC_reliable.bed", sep = "\t", row.names = F, quote = F);
