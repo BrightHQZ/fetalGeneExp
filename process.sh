@@ -2,7 +2,7 @@
 
 while getopts ":d:r:t:b:" opt
 do
-    case $opt in
+    case $opt in 
         d)
         dirL=$OPTARG;
         ;;

@@ -4,7 +4,7 @@ use strict;
 use Getopt::Long;
 
 my ( $bedFile, $outD); 
-
+ 
 GetOptions( 
    'bed:s'  => \$bedFile, 
    'out:s' => \$outD,

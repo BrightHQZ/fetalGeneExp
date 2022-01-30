@@ -5,7 +5,7 @@ do
     case $opt in
         r)
         dirL=$OPTARG;
-        ;;
+        ;; 
         f)
         from=$OPTARG;
         ;;

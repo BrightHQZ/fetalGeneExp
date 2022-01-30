@@ -1,7 +1,7 @@
 library(readxl)
 
 setwd("F:/sampleList")
-fileList <- dir(pattern = "*.xls")
+fileList <- dir(pattern = "*.xls") 
 baseInfo <- ""
 for (i in 1:length(fileList)) {
     if (i == 1) {
