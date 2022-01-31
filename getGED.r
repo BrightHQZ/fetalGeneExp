@@ -1,16 +1,16 @@
 library(getopt)
 library(ggpubr)
 
-# 第一列：参数的长名称（多个字符） 
+# 第一列：参数的长名称（多个字符）
 # 第二列：参数的短名称（一个字符）
 # 第三列：这个flag对应的参数形式（0表示flag不接受参数；1表示可接可不接；2表示必须接参数）
-# 第四列：参数的类型（logical；integer；double；complex；character；numeric
+# 第四列：参数的类型（logical；integer；double；complex；character；numeric�?
 # 第五列：注释信息
 
 # 首先将第一个参数的具体信息进行描述
 spec <- matrix(
-    # 每行五个，第五个可选，也就是说第五列可以不
-    # byrow 按行填充矩阵的元
+    # 每行五个，第五个可选，也就是说第五列可以不�?
+    # byrow 按行填充矩阵的元�?
     # ncol  每行填充五个元素
     c(
         "rootDir", "r", 2, "character", "The root dir of storage data!",
@@ -58,16 +58,13 @@ searchDataForGene <- function(inGene, inRoot, inDirL) {
             dataRes <- cbind(dataRes, a)
         }
     }
-    dataRes <- dataRes[, seq(4, 42, 6)]
+    dataRes <- dataRes[, seq(4, (length(inDirL)*6), 6)]
     colnames(dataRes) <- inDirL
-    dataRes$Median <- unlist(apply(dataRes, 1, sum)) / length(inDirL)
+    dataRes$Median <- round(unlist(apply(dataRes, 1, sum)) / length(inDirL), 3)
     res <- dataRes
-    for (i in 1:(length(inDirL) + 1)) {
-        res[, i] <- round(dataRes[, i] / mean(dataRes[, i]), 3)
-    }
     res$TSS <- seq(-2500, 2500, 5)
     return(res)
-    # return(dataRes);
+    #return(dataRes);
 }
 
 checkDestroy <- function(inRes) {
