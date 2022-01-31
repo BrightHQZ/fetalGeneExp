@@ -77,7 +77,6 @@ checkDestroy <- function(inRes) {
 }
 
 
-
 # col <- c("black","red","green","blue","orange","drown")
 if (toupper(opt$sex) == "B") {
     dirList <- paste("B", opt$from:opt$to, sep = "")
