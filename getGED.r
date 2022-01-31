@@ -81,9 +81,18 @@ checkDestroy <- function(inRes) {
 # col <- c("black","red","green","blue","orange","drown")
 if (toupper(opt$sex) == "B") {
     dirList <- paste("B", opt$from:opt$to, sep = "")
+    DataDir <- "/Data/B";
+    ImageDir <- "/Image/B";
+    if (!file.exists(paste(opt$rootDir, DataDir, sep = ""))) { dir.create(paste(opt$rootDir, DataDir, sep = "")) }
+    if (!file.exists(paste(opt$rootDir, ImageDir, sep = ""))) { dir.create(paste(opt$rootDir, ImageDir, sep = "")) }
 }
+
 if (toupper(opt$sex) == "G") {
     dirList <- paste("G", opt$from:opt$to, sep = "")
+    DataDir <- "/Data/G";
+    ImageDir <- "/Image/G";
+    if (!file.exists(paste(opt$rootDir, DataDir, sep = ""))) { dir.create(paste(opt$rootDir, DataDir, sep = "")) }
+    if (!file.exists(paste(opt$rootDir, ImageDir, sep = ""))) { dir.create(paste(opt$rootDir, ImageDir, sep = "")) }
 }
 
 if ( file.exists(opt$bed) ) {
@@ -93,12 +102,7 @@ if ( file.exists(opt$bed) ) {
     q();
 }
 
-if (!file.exists(paste(opt$rootDir, "/Data", sep = ""))) {
-    dir.create(paste(opt$rootDir, "/Data", sep = ""))
-}
-if (!file.exists(paste(opt$rootDir, "/Image", sep = ""))) {
-    dir.create(paste(opt$rootDir, "/Image", sep = ""))
-}
+
 
 
 
@@ -109,7 +113,7 @@ for (i in 1:nrow(hgnc)) {
         temp <- searchDataForGene(fileN, opt$rootDir, dirList)
         if (checkDestroy(temp)) {
             if (opt$cBI %in% c("all", "bed")) {
-                write.table(temp, paste(opt$rootDir, "/Data/", fileN, ".bed", sep = ""), sep = "\t", row.names = F, quote = F)
+                write.table(temp, paste(opt$rootDir, DataDir, fileN, ".bed", sep = ""), sep = "\t", row.names = F, quote = F)
                 print(paste("The file of ", fileN, " is processed!", sep = ""))
             }
             # temp <- temp[temp$TSS >= -25 & temp$TSS <= 25, ]
@@ -127,7 +131,7 @@ for (i in 1:nrow(hgnc)) {
                     geom_vline(aes(xintercept = 501), linetype = "dashed", color = "#5833ddd7", size = 0.6)
 
                 ggarrange(p[[1]], p[[5]], p[[2]], p[[6]], p[[3]], p[[7]], p[[4]], p[[8]], ncol = 2, nrow = 4) %>%
-                    ggexport(filename = paste(opt$rootDir, "/Image/", fileN, ".png", sep = ""), width = 1458, height = 1880, res = 250)
+                    ggexport(filename = paste(opt$rootDir, ImageDir, fileN, ".png", sep = ""), width = 1458, height = 1880, res = 250)
             }
         } else {
             destoryList <- c(destoryList, fileN)
